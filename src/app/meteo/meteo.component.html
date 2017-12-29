@@ -1,0 +1,169 @@
+<div *ngIf="affichage" id="pid" class='slideMeteo'>
+
+
+    <h2 class="example-h2">dernier rapport météo du {{date|date: 'dd/MM/yyyy'}}</h2>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col">
+
+            <div class="demo-card-square mdl-card mdl-shadow--2dp meteo">
+                <div class="mdl-card__title mdl-card--expand">
+                    <h2 class="mdl-card__title-text">temperature max</h2>
+                    <div class="progress">
+                        <mat-progress-spinner class="example-margin" [value]="value">
+
+                        </mat-progress-spinner>
+                    </div>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <p id="valeur1" class="affichageValue">{{affichageValue}}°C</p>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)='renderExplications(this.valueExplic)'>
+                    température maximale
+                </a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="mdl-cell mdl-cell--4-col">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp meteo">
+                <div class="mdl-card__title mdl-card--expand">
+                    <h2 class="mdl-card__title-text">temperature min</h2>
+                    <div class="progress">
+                        <mat-progress-spinner class="example-margin" [value]="value2">
+
+                        </mat-progress-spinner>
+                    </div>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <p id="valeur2" class="affichageValue">{{affichageValue2}}°C</p>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)='renderExplications(this.value2Explic)'>
+                    température minimale
+                </a>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp meteo">
+                <div class="mdl-card__title mdl-card--expand">
+                    <h2 class="mdl-card__title-text">pression atmosphérique</h2>
+                    <div class="progress">
+                        <mat-progress-spinner class="example-margin" [value]="value3">
+
+                        </mat-progress-spinner>
+                    </div>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <p id="valeur3" class="affichageValue">{{value3*10}}Pa</p>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)='renderExplications(this.value3Explic)'>
+                    Préssion atmosphérique
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div>
+        <div class="demo-card-square mdl-card mdl-shadow--2dp explications ">
+            <div class="mdl-card__title mdl-card--expand">
+                <h2 class="mdl-card__title-text"></h2>
+
+            </div>
+            <div class="mdl-card__supporting-text">
+                <p id="valeur3" class="affichageExplications">{{explicationsMeteos}}</p>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <button (click)='close()' class="mdl-button mdl-js-button mdl-js-ripple-effect boutonRetour">
+      retour
+    </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .meteo {
+        height: 50vh;
+        width: 100%;
+    }
+    
+    .demo-card-square>.mdl-card__title {
+        color: #fff;
+    }
+    
+    .boutonRetour {
+        transform: translateX (250vh);
+    }
+    
+    .mdl-cell {
+        display: block;
+    }
+    
+    #pid {
+        z-index: 1;
+        position: absolute;
+        left: 100vh;
+        transition: all 0.5s;
+        height: 50%;
+        width: 100%;
+        top: 30vh;
+        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0)), url('http://icdn3.digitaltrends.com/image/curiosity-rover-lead-1200x630-c.jpg') center / cover;
+    }
+    
+    #testbouton {
+        left: 100vh;
+    }
+    
+    .progress {
+        position: absolute;
+        transform: translateX(10vh);
+        transform: scale(3.5);
+        left: 26vh;
+    }
+    
+    .flexe {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .affichageValue {
+        position: absolute;
+        left: 21vh;
+        top: 20vh;
+        font-size: 7vh;
+    }
+    
+    @media all and (max-width: 600px) {
+        .affichageExplications {
+            font-size: 1vh;
+        }
+    }
+    
+    @media all and (max-width: 600px) {
+        .progress {
+            transform: scale(2);
+        }
+    }
+    
+    .explications {
+        position: relative;
+        width: 100%;
+        border: 1px solid black;
+    }
+    
+    .affichageExplications {
+        position: absolute;
+        font-size: 5vh;
+        top: 1vh;
+        line-height: 1.5;
+    }
+</style>

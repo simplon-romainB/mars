@@ -1,0 +1,189 @@
+<style>
+    .demo-layout-transparent {
+        background: url('http://mars.nasa.gov/images/mars-globe-valles-marineris-enhanced.jpg');
+        width: 100%;
+        height: 30vh;
+        background-position-y: 50vh;
+        display: block;
+    }
+    
+    .demo-layout-transparent .mat-layout__header,
+    .demo-layout-transparent .mat-layout__drawer-button {
+        color: white;
+    }
+    
+    .button {
+        width: 100%;
+    }
+    
+    @media all and (max-width: 600px) {
+        .mat-layout__drawer {
+            z-index: 5;
+        }
+    }
+</style>
+
+<router-outlet></router-outlet>
+
+<header class="mat-layout__header mat-layout__header--transparent">
+    <div class="mat-layout__header-row">
+        <!-- Title -->
+        <span class="mat-layout-title">Tranches de Mars</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mat-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mat-navigation">
+
+            <a class="mat-navigation__link" href="https://github.com/simplon-romainB/sliceofmars"><img src='../assets/github.png' /></a>
+            <a class="mat-navigation__link" href="https://www.linkedin.com/in/romain-barry-843478132/"><img src='../assets/linkedin.png' /></a>
+            <a class="mat-navigation__link" href="https://twitter.com/yysh1"><img src='../assets/twitter.png' /></a>
+        </nav>
+    </div>
+</header>
+<div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+    <mat-menu #menu="matMenu">
+        <span>API utilisées</span>
+        <button mat-menu-item>
+    <a href="https://www.programmableweb.com/api/nasas-mars-atmospheric-aggregation-system-maas"><button class="button" mat-raised-button>MAAS(météo)</button></a>
+        </button>
+        <button mat-menu-item>
+    <a href="https://github.com/chrisccerami/mars-photo-api"><button class="button"mat-raised-button>Mars Rover Phots</button></a>
+        </button>
+        <button mat-menu-item>
+    <a href="https://api.nasa.gov/api.html#apod"><button class="button"mat-raised-button>APOD(photographie du jour)</button></a>
+        </button>
+    </mat-menu>
+</div>
+
+
+
+
+<router-outlet></router-outlet>
+
+
+
+
+<style>
+    .demo-card-wide.mat-card {
+        width: 100%;
+        position: relative;
+        top: 30vh;
+    }
+    
+    .slideFX {
+        transform: translateX(-120%);
+    }
+    
+    .demo-card-wide {
+        color: black;
+        height: 176px;
+        background: url('http://icdn3.digitaltrends.com/image/curiosity-rover-lead-1200x630-c.jpg ') center / cover;
+        border: 1px solid black;
+    }
+    
+    .demo-card-wide>.mat-card__title {
+        color: black;
+    }
+    
+    #photoID2 {
+        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0)) 75%, url('http://d1jqu7g1y74ds1.cloudfront.net/wp-content/uploads/2012/08/Curiosity-Mojave-Desert-Pano-b_Ken-Kremer.jpg ') center / cover;
+        transition: all 0.5s;
+    }
+    
+    #photoID1 {
+        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0)), url('http://icdn3.digitaltrends.com/image/curiosity-rover-lead-1200x630-c.jpg ') center / cover;
+        transition: all 0.4s;
+    }
+    
+    #photoID3 {
+        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0)), url('https://mars.jpl.nasa.gov/msl/images/msl20100916.jpg ') center / cover;
+        transition: all 0.7s;
+    }
+    
+    #photoID4 {
+        background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0)), url('http://blogs.futura-sciences.com/luminet/wp-content/uploads/sites/2/2015/12/FLAMMARION_1892_Mars_map.jpg ') center / cover;
+        transition: all 0.8s;
+    }
+</style>
+
+
+<div id="photoID1" class="demo-card-wide mdl-card mdl-shadow--2dp" [ngClass]="{'slideFX ': isSlide}">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Sale temps sur la planète rouge ?</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        dernier rapport météorologique sur Mars et historique climatique
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a (click)="SlideFXmeteo(fhaz)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      Ouvrir
+    </a>
+    </div>
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      
+    </button>
+
+    </div>
+</div>
+<div id="photoID2" class="demo-card-wide mdl-card mdl-shadow--2dp" [ngClass]="{'slideFX ': isSlide}">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Photographies</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        Clichés des différentes cameras de curiosity
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a (click)="SlideFXphotos(fhaz)" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      Ouvrir
+    </a>
+    </div>
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+     
+    </button>
+    </div>
+</div>
+<div id="photoID3" class="demo-card-wide mdl-card mdl-shadow--2dp" [ngClass]="{'slideFX ': isSlide}">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Photographie astronomique du jour</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        découvrez chaque jour un cliché astronomique
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a (click)="SlideFXApod()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      Ouvrir
+    </a>
+    </div>
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      
+    </button>
+    </div>
+</div>
+<div id="photoID4" class="demo-card-wide mdl-card mdl-shadow--2dp" [ngClass]="{'slideFX ': isSlide}">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Quelques chiffres</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        quelques informations synthétiques sur Mars
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a (click)="SlideFXNumbers()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      Ouvrir
+    </a>
+    </div>
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      
+    </button>
+    </div>
+</div>
+<app-meteo [affichage]='affichage' (open)='SlideFXmeteoIn()'></app-meteo>
+<app-numbers [affichageNumbers]='affichageNumbers' (open4)='SlideFXmeteoIn()'></app-numbers>
+<app-photos [affichagePhotos]='affichagePhotos' [prepID]='this.curiosityPhotoApiService.preparePhotoID' (open2)='SlideFXmeteoIn()'></app-photos>
+<app-apod [affichageApod]='affichageApod' (open3)='SlideFXmeteoIn()'></app-apod>

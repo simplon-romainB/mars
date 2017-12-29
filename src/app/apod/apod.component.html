@@ -1,0 +1,57 @@
+<div class="apodcontainer" *ngIf="affichageApod === true">
+
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+            <mat-card class="imeCard example-card">
+                <mat-card-header>
+                    <div md-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Image astronomique du jour</mat-card-title>
+                    <mat-card-subtitle>chaque jour une nouvelle photo</mat-card-subtitle>
+                </mat-card-header>
+                <img md-card-image class="imageApod" src={{image}}>
+                <mat-card-content>
+                    <p>
+                        {{explanation}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button md-button (click)="close()">retour</button>
+
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .explain {
+        display: inline-block;
+    }
+    
+    .example-card {
+        width: 98%;
+        left: 0;
+    }
+    
+    .imageApod {
+        width: 100%;
+    }
+    
+    .apodcontainer {
+        background-size: cover;
+        position: relative;
+        transition: 1s all ease;
+    }
+    
+    .mdl-grid {
+        transform: translateY(-60vh);
+    }
+    
+    @media all and (max-width: 600px) {
+        .mdl-grid {
+            transform: translateY(-120vh);
+        }
+    }
+</style>

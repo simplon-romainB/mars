@@ -1,0 +1,77 @@
+<div class="container">
+
+    <div *ngIf="affichagePhotos === true" id="pid" class="displayMobile">
+        <button (click)='close()' id="boutonRetour" class="mdl-button mdl-js-button mdl-js-ripple-effect boutonRetour">
+      retour
+    </button>
+
+        <button mat-button [matMenuTriggerFor]="menu" class="camMenu mdl-button mdl-js-button mdl-js-ripple-effect">menu</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)='renderLastReportRhaz(cameras[0].dimin,prepID,cameras[0].descriptions)'>{{cameras[0].nom}}</button>
+            <button mat-menu-item (click)='renderLastReportRhaz(cameras[1].dimin,prepID,cameras[1].descriptions)'>{{cameras[1].nom}}</button>
+            <button mat-menu-item (click)='renderLastReportRhaz(cameras[2].dimin,prepID,cameras[2].descriptions)'>{{cameras[2].nom}}</button>
+            <button mat-menu-item (click)='renderLastReportRhaz(cameras[3].dimin,prepID,cameras[3].descriptions)'>{{cameras[3].nom}}</button>
+            <button mat-menu-item (click)='close()' id="boutonRetour" class="mdl-button mdl-js-button mdl-js-ripple-effect boutonRetour">
+      retour
+    </button>
+        </mat-menu>
+
+        <div class="description">{{description}}</div>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+                <img class="photoNasa" src={{photo}} />
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>
+
+<style>
+    .photoNasa {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid black;
+        width: 100%;
+    }
+    
+    #pid {
+        background-size: cover;
+        position: relative;
+        top: -39.3vh;
+    }
+    
+    @media all and (max-width: 600px) {
+        #pid {
+            top: -80vh;
+        }
+    }
+    
+    .container {
+        top: -15vh;
+        position: relative;
+    }
+    
+    .camMenu {
+        position: absolute;
+        display: inline-block;
+        background-color: white;
+        top: 0;
+        left: 0;
+        border: 1px solid black;
+    }
+    
+    .description {
+        display: block;
+        border: 1px solid black;
+        font-size: 16px;
+        margin: auto;
+        text-align: center;
+    }
+</style>
