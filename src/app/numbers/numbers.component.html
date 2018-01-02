@@ -1,9 +1,6 @@
 <div *ngIf="affichageNumbers === true" class="fond">
+    <button md-button (click)="close()">retour</button>
     <div>
-        <button (click)="cadre()" class="mdl-button mdl-js-button mdl-js-ripple-effect boutonRetour">
-        <button md-button (click)="close()">retour</button>quelques chiffres.......
-
-        </button>
         <div class="flexLegende legendeMobile" *ngIf="res > 0">
             <div class="legende1 legendeMobile" [ngClass]="{'legende12' :res > 4}">
                 <p class="textEx">Mercure</p>
@@ -193,7 +190,7 @@
     
     .textEx {
         position: absolute;
-        text-align: center;
+        text-align: left;
     }
     
     .diametre {
@@ -313,7 +310,7 @@
         width: 100%;
         justify-content: space-between;
         position: absolute;
-        bottom: 0;
+        bottom: 50vh;
         margin: auto;
     }
     
@@ -325,83 +322,91 @@
     
     .legende1 {
         display: inline-block;
-        transform: translateY(-60vh);
+        transform: translateY(-75vh);
         background-color: brown;
         width: 6vh;
         height: 6vh;
         opacity: 0;
         transition: 1s all;
+        border-radius: 15%;
     }
     
     .legende2 {
         display: inline-block;
-        transform: translateY(-60vh);
+        transform: translateY(-75vh);
         background-color: orange;
         width: 6vh;
         height: 6vh;
         opacity: 0;
         transition: 1s all;
+        border-radius: 15%;
     }
     
     .legende3 {
         display: inline-block;
-        transform: translateY(-60vh);
+        transform: translateY(-75vh);
         background-color: black;
         color: white;
         width: 6vh;
         height: 6vh;
         opacity: 0;
         transition: 1s all;
+        border-radius: 15%;
     }
     
     .legende4 {
         display: inline-block;
-        transform: translateY(-60vh);
+        transform: translateY(-75vh);
         background-color: blue;
         width: 6vh;
         height: 6vh;
         opacity: 0;
         transition: 1s all;
+        border-radius: 15%;
     }
     
     .legende5 {
         display: inline-block;
-        transform: translateY(-60vh);
+        transform: translateY(-75vh);
         background-color: grey;
         width: 6vh;
         height: 6vh;
         opacity: 0;
         transition: 1s all;
+        border-radius: 15%;
     }
     
     .legende6 {
         display: inline-block;
-        transform: translateY(-60vh);
+        transform: translateY(-75vh);
         background-color: red;
         width: 6vh;
         height: 6vh;
         opacity: 0;
         transition: 1s all;
+        border-radius: 15%;
     }
     
     .legende7 {
         display: inline-block;
-        transform: translateY(-60vh);
+        transform: translateY(-75vh);
         background-color: yellow;
         width: 6vh;
         height: 6vh;
         opacity: 0;
         transition: 1s all;
+        border-radius: 15%;
     }
     
     .legende8 {
         display: inline-block;
-        transform: translateY(-60vh);
+        transform: translateY(-75vh);
         background-color: pink;
         width: 6vh;
         height: 6vh;
         opacity: 0;
         transition: 1s all;
+        border-radius: 15%;
     }
     
     .legende12 {

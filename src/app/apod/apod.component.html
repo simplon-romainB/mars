@@ -41,8 +41,19 @@
     
     .apodcontainer {
         background-size: cover;
-        position: relative;
+        position: absolute;
         transition: 1s all ease;
+        animation: anim 0.5s;
+        transform: translateY(-30vh);
+    }
+    
+    @keyFrames anim {
+        from {
+            left: 200vh
+        }
+        to {
+            left: 0vh
+        }
     }
     
     .mdl-grid {

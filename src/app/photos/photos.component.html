@@ -11,7 +11,7 @@
             <button mat-menu-item (click)='renderLastReportRhaz(cameras[1].dimin,prepID,cameras[1].descriptions)'>{{cameras[1].nom}}</button>
             <button mat-menu-item (click)='renderLastReportRhaz(cameras[2].dimin,prepID,cameras[2].descriptions)'>{{cameras[2].nom}}</button>
             <button mat-menu-item (click)='renderLastReportRhaz(cameras[3].dimin,prepID,cameras[3].descriptions)'>{{cameras[3].nom}}</button>
-            <button mat-menu-item (click)='close()' id="boutonRetour" class="mdl-button mdl-js-button mdl-js-ripple-effect boutonRetour">
+            <button mat-menu-item (click)='close()'>
       retour
     </button>
         </mat-menu>
@@ -45,6 +45,16 @@
         background-size: cover;
         position: relative;
         top: -39.3vh;
+        animation: anim 0.5s;
+    }
+    
+    @keyFrames anim {
+        from {
+            left: 200vh
+        }
+        to {
+            left: 0vh
+        }
     }
     
     @media all and (max-width: 600px) {
@@ -54,7 +64,7 @@
     }
     
     .container {
-        top: -15vh;
+        top: -37.5vh;
         position: relative;
     }
     

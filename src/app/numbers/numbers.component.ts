@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, ViewChild, EventEmitter, Output, Renderer2 } from '@angular/core';
+import { Component, AfterViewInit, Input, ViewChild, EventEmitter, Output, Renderer2, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-numbers',
