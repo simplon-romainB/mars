@@ -43,9 +43,11 @@ public valeurA = 78;
 public depart = 0;
 public fin = 8;
 public cadreSup = 0;
+public position = [true,false,false,false,false];
 public cadreDroit = 0;
 public cadreBase:number;
 public cadreGauchiste:number;
+public indicePlanetes = 0;
 public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" :17.3, "periode":7.27, "excentricite": 20, "tailleA":142, "masseA":"2*10", "exposantMasse":27,"demiGrandAxeA":5.2,"periodeA":4380,"excentriciteA":0.048},
                   {"nom": "Saturne", "taille":84.3, "masse":29.9, "demiGrandAxe" : 31.6, "periode":18, "excentricite":25,"tailleA":121, "masseA":"6*10", "exposantMasse":26,"demiGrandAxeA":9.5,"periodeA":10585,"excentriciteA":0.056},
                   {"nom": "Uranus", "taille":35.8 , "masse":4.6, "demiGrandAxe": 64, "periode":51, "excentricite":25,"tailleA":51, "masseA":"9*10", "exposantMasse":25,"demiGrandAxeA":19.2,"periodeA":30660,"excentriciteA":0.046},
@@ -57,180 +59,61 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
                   
   constructor(private renderer : Renderer2) { }
 
+
+
+  /*
+
   excentricExemple() {
     this.ctx6 = this.myCanvas6.nativeElement.getContext("2d");
     this.ctx6.arc(50,50,50,0,2*Math.PI);
     this.ctx6.stroke();
   }
-  
+  */
   close(){
     this.open4.emit(null);
   }
-  cadre(){          /* TODO: trouver une solution plus élégante pour déssiner les cadres Canvas */
-    this.canWidth = this.myCanvas.nativeElement.offsetWidth;
-    this.canHeight = this.myCanvas.nativeElement.offsetHeight;
+
+  
+  cadre(){          
+    this.canWidth = this.myCanvas.nativeElement.width;
+    this.canHeight = this.myCanvas.nativeElement.height;
     this.cadreBase= this.canWidth;
     this.cadreGauchiste= this.canHeight;
     this.ctx = this.myCanvas.nativeElement.getContext("2d");
-    this.ctx2 = this.myCanvas2.nativeElement.getContext("2d");
-     this.ctx3 = this.myCanvas3.nativeElement.getContext("2d");
-    this.ctx4 = this.myCanvas4.nativeElement.getContext("2d");
-    this.ctx5 = this.myCanvas5.nativeElement.getContext("2d");
     this.ctx.beginPath();
-    this.ctx2.beginPath();
-       this.ctx3.beginPath();
-    this.ctx4.beginPath();
-       this.ctx5.beginPath();
     this.ctx.moveTo(0,1);
-     this.ctx2.moveTo(0,1);
-        this.ctx3.moveTo(0,1);
-     this.ctx4.moveTo(0,1);
-        this.ctx5.moveTo(0,1);
     this.ctx.strokeStyle= "black";
-    this.ctx2.strokeStyle= "black";
-    this.ctx3.strokeStyle= "black";
-    this.ctx4.strokeStyle= "black";
-    this.ctx5.strokeStyle= "black";
-    this.ctx.lineTo(this.cadreSup,1);
-     this.ctx2.lineTo(this.cadreSup,1);
-      this.ctx3.lineTo(this.cadreSup,1);
-     this.ctx4.lineTo(this.cadreSup,1);
-      this.ctx5.lineTo(this.cadreSup,1);
+    this.ctx.lineTo(this.canWidth,1);
     this.ctx.stroke();
-    this.ctx2.stroke();
-     this.ctx3.stroke();
-    this.ctx4.stroke();
-     this.ctx5.stroke();
-    this.cadreSup = this.cadreSup + 3;
-    if (this.cadreSup < this.canWidth){
-      var l = setTimeout(()=>this.cadre(),0.5);
-      
-    }
-    else {
-      this.cadreDroite();
-      
-     
-    }
+    this.cadreDroite();
   }
   cadreDroite(){
     this.ctx = this.myCanvas.nativeElement.getContext("2d");
-    this.ctx2 = this.myCanvas2.nativeElement.getContext("2d");
-    this.ctx3 = this.myCanvas3.nativeElement.getContext("2d");
-    this.ctx4 = this.myCanvas4.nativeElement.getContext("2d");
-    this.ctx5 = this.myCanvas5.nativeElement.getContext("2d");
     this.ctx.beginPath();
-    this.ctx2.beginPath();
-      this.ctx3.beginPath();
-    this.ctx4.beginPath();
-      this.ctx5.beginPath();
     this.ctx.moveTo((this.canWidth),1);
-    this.ctx2.moveTo((this.canWidth),1);
-      this.ctx3.moveTo((this.canWidth),1);
-    this.ctx4.moveTo((this.canWidth),1);
-      this.ctx5.moveTo((this.canWidth),1);
     this.ctx.strokeStyle= "black";
-    this.ctx2.strokeStyle= "black";
-    this.ctx3.strokeStyle= "black";
-    this.ctx4.strokeStyle= "black";
-    this.ctx5.strokeStyle= "black";
-    this.ctx.lineTo((this.canWidth),this.cadreDroit);
-     this.ctx2.lineTo((this.canWidth),this.cadreDroit);
-      this.ctx3.lineTo((this.canWidth),this.cadreDroit);
-     this.ctx4.lineTo((this.canWidth),this.cadreDroit);
-      this.ctx5.lineTo((this.canWidth),this.cadreDroit);
-      this.ctx.stroke();
-      this.ctx2.stroke();
-       this.ctx3.stroke();
-      this.ctx4.stroke();
-       this.ctx5.stroke();
-      this.cadreDroit = this.cadreDroit + 3 ;
-      
-    if (this.cadreDroit < this.canHeight){
-      var j = setTimeout(()=>this.cadreDroite(),0.5);
-    }
-    else {
+    this.ctx.lineTo((this.canWidth),this.canHeight);
+    this.ctx.stroke();  
       this.cadreBas();
-    }
   }
   cadreBas(){
     this.ctx = this.myCanvas.nativeElement.getContext("2d");
-    this.ctx2 = this.myCanvas2.nativeElement.getContext("2d");
-     this.ctx3 = this.myCanvas3.nativeElement.getContext("2d");
-    this.ctx4 = this.myCanvas4.nativeElement.getContext("2d");
-     this.ctx5 = this.myCanvas5.nativeElement.getContext("2d");
     this.ctx.beginPath();
-    this.ctx2.beginPath();
-    this.ctx3.beginPath();
-    this.ctx4.beginPath();
-    this.ctx5.beginPath();
     this.ctx.moveTo((this.canWidth-1),(this.canHeight));
-    this.ctx2.moveTo((this.canWidth-1),(this.canHeight));
-    this.ctx3.moveTo((this.canWidth-1),(this.canHeight));
-    this.ctx4.moveTo((this.canWidth-1),(this.canHeight));
-    this.ctx5.moveTo((this.canWidth-1),(this.canHeight));
     this.ctx.strokeStyle= "black";
-    this.ctx2.strokeStyle= "black";
-    this.ctx3.strokeStyle= "black";
-    this.ctx4.strokeStyle= "black";
-    this.ctx5.strokeStyle= "black";
-    this.ctx.lineTo(this.cadreBase,(this.canHeight));
-    this.ctx2.lineTo(this.cadreBase,(this.canHeight));
-     this.ctx3.lineTo(this.cadreBase,(this.canHeight));
-    this.ctx4.lineTo(this.cadreBase,(this.canHeight));
-     this.ctx5.lineTo(this.cadreBase,(this.canHeight));
+    this.ctx.lineTo(1,(this.canHeight));
     this.ctx.stroke();
-    this.ctx2.stroke();
-     this.ctx3.stroke();
-    this.ctx4.stroke();
-     this.ctx5.stroke();
-      this.cadreBase = this.cadreBase - 3 ; 
-     
-     if (this.cadreBase >= 1){
-      var a = setTimeout(()=>this.cadreBas(),0.5);
-    } 
-   
-    else {
-      this.cadreGauche();
-    }
+    this.cadreGauche();
   }
   cadreGauche(){
-     this.ctx = this.myCanvas.nativeElement.getContext("2d");
-     this.ctx2 = this.myCanvas2.nativeElement.getContext("2d");
-      this.ctx3 = this.myCanvas3.nativeElement.getContext("2d");
-     this.ctx4 = this.myCanvas4.nativeElement.getContext("2d");
-      this.ctx5 = this.myCanvas5.nativeElement.getContext("2d");
+    this.ctx = this.myCanvas.nativeElement.getContext("2d");
     this.ctx.beginPath();
-    this.ctx2.beginPath();
-     this.ctx3.beginPath();
-    this.ctx4.beginPath();
-     this.ctx5.beginPath();
     this.ctx.moveTo(1,this.canHeight);
-    this.ctx2.moveTo(1,this.canHeight);
-     this.ctx3.moveTo(1,this.canHeight);
-    this.ctx4.moveTo(1,this.canHeight);
-     this.ctx5.moveTo(1,this.canHeight);
-     this.ctx.strokeStyle= "black";
-     this.ctx2.strokeStyle= "black";
-        this.ctx3.strokeStyle= "black";
-     this.ctx4.strokeStyle= "black";
-        this.ctx5.strokeStyle= "black";
-     this.ctx.lineTo(1,this.cadreGauchiste);
-     this.ctx2.lineTo(1,this.cadreGauchiste);
-     this.ctx3.lineTo(1,this.cadreGauchiste);
-     this.ctx4.lineTo(1,this.cadreGauchiste);
-     this.ctx5.lineTo(1,this.cadreGauchiste);
+    this.ctx.strokeStyle= "black";
+    this.ctx.lineTo(1,1);
     this.ctx.stroke();
-    this.ctx2.stroke();
-      this.ctx3.stroke();
-    this.ctx4.stroke();
-      this.ctx5.stroke();
-    this.cadreGauchiste = this.cadreGauchiste - 3 ;
-    if  (this.cadreGauchiste >= 1) {
-      var l = setTimeout(()=>this.cadreGauche(),0.5);
-    }
-    else {
-     
-      this.init(this.planetes[0].taille,this.resVar[0],"black","grey");
+      this.indicePlanetes = 0;
+      this.init(this.planetes[0].taille,this.resVar[0],"black","grey",0);
       
      
       
@@ -238,10 +121,10 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
 
     
       
-    }
+    
   }
-  /* série de fonctions pour gérer les graphs. TODO: trouver une solution pour les élements qui font moins d'un pixel */
-  init(taille,variableReset,couleurContour,couleurFill ){
+   
+  init(taille,variableReset,couleurContour,couleurFill,decalage ){
     
     this.ctx = this.myCanvas.nativeElement.getContext("2d");
     this.ctx.beginPath();
@@ -249,20 +132,29 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
     this.ctx.strokeStyle= couleurContour;
     this.ctx.fillStyle=couleurFill;
     
-    this.ctx.strokeRect(1,(this.canHeight-(variableReset)),(this.canWidth/8),variableReset);
-     this.ctx.fillRect(1,(this.canHeight-(variableReset)),(this.canWidth/8),variableReset);
-    
+    this.ctx.strokeRect(1 + decalage,(this.canHeight-(variableReset)),(this.canWidth/8),variableReset);
+     this.ctx.fillRect(1 + decalage,(this.canHeight-(variableReset)),(this.canWidth/8),variableReset);
+    this.ctx.font = "bold 22pt Calibri,Geneva,Arial";
+    this.ctx.fillStyle = "black";
+    this.ctx.fillText("ok",1+decalage,this.canHeight);
     this.ctx.closePath();
-    variableReset = variableReset +1;
+    variableReset =  variableReset + (((taille/100)*(this.canHeight)-1) /20) ;
     
     if (variableReset < ((taille/100)*(this.canHeight)-1)) {
-    var x = setTimeout(()=>this.init(taille,variableReset,couleurContour,couleurFill ),1);
+    window.requestAnimationFrame(()=>{this.init(taille,variableReset,couleurContour,couleurFill,decalage )});
+    
   }
-  else {
-    this.res = 1;
-     this.init2(this.planetes[1].taille,this.resVar[this.res],"black",this.couleurs[this.res],((this.canWidth/8)*this.res));
-  }
-  }
+    else {
+      decalage = decalage + (this.canWidth/8);
+      variableReset = 0;
+      this.indicePlanetes = this.indicePlanetes +1; 
+      if (this.indicePlanetes < 8) {
+      taille = this.planetes[this.indicePlanetes].taille;
+      couleurFill = this.couleurs[this.indicePlanetes];
+      window.requestAnimationFrame(()=>{this.init(taille,variableReset,couleurContour,couleurFill,decalage )});
+      }
+    }
+  }/*
    init2(taille,variableReset,couleurContour,couleurFill,length) {
     this.ctx = this.myCanvas.nativeElement.getContext("2d");
     
@@ -275,7 +167,7 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
     this.ctx.closePath();
     variableReset = variableReset+1;
     console.log(this.res);
-    if (variableReset < ((taille/100)*(this.canHeight))) {
+    /* if (variableReset < ((taille/100)*(this.canHeight))) {
     var z = setTimeout(()=>this.init2(taille,variableReset,couleurContour,couleurFill,length),1);
    
   }
@@ -293,7 +185,7 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
   }
    }
    
-
+   /*
   initMasse(masse,variableReset,couleurContour,couleurFill){
      
       this.ctx2 = this.myCanvas2.nativeElement.getContext("2d");
@@ -500,9 +392,11 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
   }
    }
    
-
   
-   /* gestion des evenements quand on click sur les graphs */
+  
+    gestion des evenements quand on click sur les graphs 
+
+    */
    zoom(){
     this.zoomId = !this.zoomId;
     this.zoomId2 = false;

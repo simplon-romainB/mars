@@ -1,118 +1,118 @@
 <div *ngIf="affichageNumbers === true" class="fond">
     <button md-button (click)="close()">retour</button>
     <div>
-        <div class="flexLegende legendeMobile" *ngIf="res > 0">
-            <div class="legende1 legendeMobile" [ngClass]="{'legende12' :res > 4}">
+        <div class="flexLegende legendeMobile">
+            <div class="legende1 legendeMobile" [ngClass]="legende12">
                 <p class="textEx">Mercure</p>
             </div>
-            <div class="legende2 legendeMobile" [ngClass]="{'legende12' :resPeriode >0}">
+            <div class="legende2 legendeMobile" [ngClass]="legende12">
                 <p class="textEx">Venus</p>
             </div>
-            <div class="legende3 legendeMobile" [ngClass]="{'legende12' :resMasse >0}">
+            <div class="legende3 legendeMobile" [ngClass]="legende12">
                 <p class="textEx">Terre</p>
             </div>
-            <div class="legende4 legendeMobile" [ngClass]="{'legende12' :resDemiGrand >0}">
+            <div class="legende4 legendeMobile" [ngClass]="legende12">
                 <p class="textEx">Mars</p>
             </div>
-            <div class="legende5 legendeMobile" [ngClass]="{'legende12' :resExcent >0}">
+            <div class="legende5 legendeMobile" [ngClass]="legende12">
                 <p class="textEx">Jupiter</p>
             </div>
-            <div class="legende6 legendeMobile" [ngClass]="{'legende12' :resExcent >3}">
+            <div class="legende6 legendeMobile" [ngClass]="legende12">
                 <p class="textEx">Saturne</p>
             </div>
-            <div class="legende7 legendeMobile" [ngClass]="{'legende12' :resExcent >5}">
+            <div class="legende7 legendeMobile" [ngClass]="legende12">
                 <p class="textEx">Uranus</p>
             </div>
-            <div class="legende8 legendeMobile" [ngClass]="{'legende12' :resMasse >5}">
+            <div class="legende8 legendeMobile" [ngClass]="legende12">
                 <p class="textEx">Neptune</p>
             </div>
         </div>
     </div>
 
-
+    <canvas class="can" width="800" height="400" (click)="zoom()" [ngClass]="{'zoom ': zoomId}" #myCanvas> </canvas>
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
-            <div class="flexContainer" [ngClass]="{'flexcontainer2': resDemiGrand > 5}">
 
 
-                <div class="stats">
-                    <div class="diametre" *ngIf="zoomId">diametre(en milliers de KM)</div>
-                    <canvas class="can" (click)="zoom()" [ngClass]="{'zoom ': zoomId}" #myCanvas> </canvas>
-
-                    <div class="ex" *ngIf="zoomId">{{planetes[0].tailleA}}
-                        <div class="ex2" *ngIf="zoomId">{{planetes[1].tailleA}}</div>
-                        <div class="ex3" *ngIf="zoomId">{{planetes[2].tailleA}}</div>
-                        <div class="ex4" *ngIf="zoomId">{{planetes[3].tailleA}}</div>
-                        <div class="ex5" *ngIf="zoomId">{{planetes[4].tailleA}}</div>
-                        <div class="ex6" *ngIf="zoomId">{{planetes[5].tailleA}}</div>
-                        <div class="ex7" *ngIf="zoomId">{{planetes[6].tailleA}}</div>
-                        <div class="ex8" *ngIf="zoomId">{{planetes[7].tailleA}}</div>
-                    </div>
 
 
+            <div class="diametre" *ngIf="position[0]">diametre(en milliers de KM)</div>
+
+
+            <div class="ex" *ngIf="zoomId">{{planetes[0].tailleA}}
+                <div class="ex2" *ngIf="zoomId">{{planetes[1].tailleA}}</div>
+                <div class="ex3" *ngIf="zoomId">{{planetes[2].tailleA}}</div>
+                <div class="ex4" *ngIf="zoomId">{{planetes[3].tailleA}}</div>
+                <div class="ex5" *ngIf="zoomId">{{planetes[4].tailleA}}</div>
+                <div class="ex6" *ngIf="zoomId">{{planetes[5].tailleA}}</div>
+                <div class="ex7" *ngIf="zoomId">{{planetes[6].tailleA}}</div>
+                <div class="ex8" *ngIf="zoomId">{{planetes[7].tailleA}}</div>
+            </div>
+
+
+
+            <div>
+                <div class="diametre" *ngIf="position[1]">masse(en Kg)</div>
+                <canvas class="can" (click)="zoom2()" [ngClass]="{'zoom2': zoomId2}" #myCanvas2></canvas>
+                <div class="ex" *ngIf="zoomId2">{{planetes[0].masseA}}<sup>{{planetes[0].exposantMasse}}</sup>
+                    <div class="ex2" *ngIf="zoomId2">{{planetes[1].masseA}}<sup>{{planetes[1].exposantMasse}}</sup></div>
+                    <div class="ex3" *ngIf="zoomId2">{{planetes[2].masseA}}<sup>{{planetes[2].exposantMasse}}</sup></div>
+                    <div class="ex4" *ngIf="zoomId2">{{planetes[3].masseA}}<sup>{{planetes[3].exposantMasse}}</sup></div>
+                    <div class="ex5" *ngIf="zoomId2">{{planetes[4].masseA}}<sup>{{planetes[4].exposantMasse}}</sup></div>
+                    <div class="ex6" *ngIf="zoomId2">{{planetes[5].masseA}}<sup>{{planetes[5].exposantMasse}}</sup></div>
+                    <div class="ex7" *ngIf="zoomId2">{{planetes[6].masseA}}<sup>{{planetes[6].exposantMasse}}</sup></div>
+                    <div class="ex8" *ngIf="zoomId2">{{planetes[7].masseA}}<sup>{{planetes[7].exposantMasse}}</sup></div>
                 </div>
-                <div>
-                    <div class="diametre" *ngIf="zoomId2">masse(en Kg)</div>
-                    <canvas class="can" (click)="zoom2()" [ngClass]="{'zoom2': zoomId2}" #myCanvas2></canvas>
-                    <div class="ex" *ngIf="zoomId2">{{planetes[0].masseA}}<sup>{{planetes[0].exposantMasse}}</sup>
-                        <div class="ex2" *ngIf="zoomId2">{{planetes[1].masseA}}<sup>{{planetes[1].exposantMasse}}</sup></div>
-                        <div class="ex3" *ngIf="zoomId2">{{planetes[2].masseA}}<sup>{{planetes[2].exposantMasse}}</sup></div>
-                        <div class="ex4" *ngIf="zoomId2">{{planetes[3].masseA}}<sup>{{planetes[3].exposantMasse}}</sup></div>
-                        <div class="ex5" *ngIf="zoomId2">{{planetes[4].masseA}}<sup>{{planetes[4].exposantMasse}}</sup></div>
-                        <div class="ex6" *ngIf="zoomId2">{{planetes[5].masseA}}<sup>{{planetes[5].exposantMasse}}</sup></div>
-                        <div class="ex7" *ngIf="zoomId2">{{planetes[6].masseA}}<sup>{{planetes[6].exposantMasse}}</sup></div>
-                        <div class="ex8" *ngIf="zoomId2">{{planetes[7].masseA}}<sup>{{planetes[7].exposantMasse}}</sup></div>
-                    </div>
-
-                </div>
-                <div>
-                    <div class="diametre" *ngIf="zoomId3">demi grand axe(en UA)</div>
-                    <canvas class="can" (click)="zoom3()" [ngClass]="{'zoom3': zoomId3}" #myCanvas3></canvas>
-                    <div class="ex" *ngIf="zoomId3">{{planetes[0].demiGrandAxeA}}
-                        <div class="ex2" *ngIf="zoomId3">{{planetes[1].demiGrandAxeA}}</div>
-                        <div class="ex3" *ngIf="zoomId3">{{planetes[2].demiGrandAxeA}}</div>
-                        <div class="ex4" *ngIf="zoomId3">{{planetes[3].demiGrandAxeA}}</div>
-                        <div class="ex5" *ngIf="zoomId3">{{planetes[4].demiGrandAxeA}}</div>
-                        <div class="ex6" *ngIf="zoomId3">{{planetes[5].demiGrandAxeA}}</div>
-                        <div class="ex7" *ngIf="zoomId3">{{planetes[6].demiGrandAxeA}}</div>
-                        <div class="ex8" *ngIf="zoomId3">{{planetes[7].demiGrandAxeA}}</div>
-                    </div>
-
-                </div>
-                <div>
-                    <div class="diametre" *ngIf="zoomId4">periode de revolution orbitale(en jours terrestres)</div>
-                    <canvas class="can" (click)="zoom4()" [ngClass]="{'zoom4': zoomId4}" #myCanvas4></canvas>
-                    <div class="ex" *ngIf="zoomId4">{{planetes[0].periodeA}}
-                        <div class="ex2" *ngIf="zoomId4">{{planetes[1].periodeA}}</div>
-                        <div class="ex3" *ngIf="zoomId4">{{planetes[2].periodeA}}</div>
-                        <div class="ex4" *ngIf="zoomId4">{{planetes[3].periodeA}}</div>
-                        <div class="ex5" *ngIf="zoomId4">{{planetes[4].periodeA}}</div>
-                        <div class="ex6" *ngIf="zoomId4">{{planetes[5].periodeA}}</div>
-                        <div class="ex7" *ngIf="zoomId4">{{planetes[6].periodeA}}</div>
-                        <div class="ex8" *ngIf="zoomId4">{{planetes[7].periodeA}}</div>
-
-                    </div>
-
-                </div>
-                <div>
-                    <div class="diametre" *ngIf="zoomId5">excentricité de l'orbite</div>
-                    <canvas class="can" (click)="zoom5()" [ngClass]="{'zoom5': zoomId5}" #myCanvas5></canvas>
-                    <div class="ex" *ngIf="zoomId5">{{planetes[0].excentriciteA}}
-                        <div class="ex2" *ngIf="zoomId5">{{planetes[1].excentriciteA}}</div>
-                        <div class="ex3" *ngIf="zoomId5">{{planetes[2].excentriciteA}}</div>
-                        <div class="ex4" *ngIf="zoomId5">{{planetes[3].excentriciteA}}</div>
-                        <div class="ex5" *ngIf="zoomId5">{{planetes[4].excentriciteA}}</div>
-                        <div class="ex6" *ngIf="zoomId5">{{planetes[5].excentriciteA}}</div>
-                        <div class="ex7" *ngIf="zoomId5">{{planetes[6].excentriciteA}}</div>
-                        <div class="ex8" *ngIf="zoomId5">{{planetes[7].excentriciteA}}</div>
-                    </div>
-
-                </div>
-
-
-
 
             </div>
+            <div>
+                <div class="diametre" *ngIf="position[2]">demi grand axe(en UA)</div>
+                <canvas class="can" (click)="zoom3()" [ngClass]="{'zoom3': zoomId3}" #myCanvas3></canvas>
+                <div class="ex" *ngIf="zoomId3">{{planetes[0].demiGrandAxeA}}
+                    <div class="ex2" *ngIf="zoomId3">{{planetes[1].demiGrandAxeA}}</div>
+                    <div class="ex3" *ngIf="zoomId3">{{planetes[2].demiGrandAxeA}}</div>
+                    <div class="ex4" *ngIf="zoomId3">{{planetes[3].demiGrandAxeA}}</div>
+                    <div class="ex5" *ngIf="zoomId3">{{planetes[4].demiGrandAxeA}}</div>
+                    <div class="ex6" *ngIf="zoomId3">{{planetes[5].demiGrandAxeA}}</div>
+                    <div class="ex7" *ngIf="zoomId3">{{planetes[6].demiGrandAxeA}}</div>
+                    <div class="ex8" *ngIf="zoomId3">{{planetes[7].demiGrandAxeA}}</div>
+                </div>
+
+            </div>
+            <div>
+                <div class="diametre" *ngIf="position[3]">periode de revolution orbitale(en jours terrestres)</div>
+                <canvas class="can" (click)="zoom4()" [ngClass]="{'zoom4': zoomId4}" #myCanvas4></canvas>
+                <div class="ex" *ngIf="zoomId4">{{planetes[0].periodeA}}
+                    <div class="ex2" *ngIf="zoomId4">{{planetes[1].periodeA}}</div>
+                    <div class="ex3" *ngIf="zoomId4">{{planetes[2].periodeA}}</div>
+                    <div class="ex4" *ngIf="zoomId4">{{planetes[3].periodeA}}</div>
+                    <div class="ex5" *ngIf="zoomId4">{{planetes[4].periodeA}}</div>
+                    <div class="ex6" *ngIf="zoomId4">{{planetes[5].periodeA}}</div>
+                    <div class="ex7" *ngIf="zoomId4">{{planetes[6].periodeA}}</div>
+                    <div class="ex8" *ngIf="zoomId4">{{planetes[7].periodeA}}</div>
+
+                </div>
+
+            </div>
+            <div>
+                <div class="diametre" *ngIf="position[4]">excentricité de l'orbite</div>
+                <canvas class="can" (click)="zoom5()" [ngClass]="{'zoom5': zoomId5}" #myCanvas5></canvas>
+                <div class="ex" *ngIf="zoomId5">{{planetes[0].excentriciteA}}
+                    <div class="ex2" *ngIf="zoomId5">{{planetes[1].excentriciteA}}</div>
+                    <div class="ex3" *ngIf="zoomId5">{{planetes[2].excentriciteA}}</div>
+                    <div class="ex4" *ngIf="zoomId5">{{planetes[3].excentriciteA}}</div>
+                    <div class="ex5" *ngIf="zoomId5">{{planetes[4].excentriciteA}}</div>
+                    <div class="ex6" *ngIf="zoomId5">{{planetes[5].excentriciteA}}</div>
+                    <div class="ex7" *ngIf="zoomId5">{{planetes[6].excentriciteA}}</div>
+                    <div class="ex8" *ngIf="zoomId5">{{planetes[7].excentriciteA}}</div>
+                </div>
+
+            </div>
+
+
+
+
+
         </div>
     </div>
     <div class="explicationsDiv" [ngClass]="{'explicationsDiv2': resDemiGrand > 0}">
@@ -326,7 +326,6 @@
         background-color: brown;
         width: 6vh;
         height: 6vh;
-        opacity: 0;
         transition: 1s all;
         border-radius: 15%;
     }
@@ -337,7 +336,6 @@
         background-color: orange;
         width: 6vh;
         height: 6vh;
-        opacity: 0;
         transition: 1s all;
         border-radius: 15%;
     }
@@ -349,7 +347,6 @@
         color: white;
         width: 6vh;
         height: 6vh;
-        opacity: 0;
         transition: 1s all;
         border-radius: 15%;
     }
@@ -360,7 +357,6 @@
         background-color: blue;
         width: 6vh;
         height: 6vh;
-        opacity: 0;
         transition: 1s all;
         border-radius: 15%;
     }
@@ -371,7 +367,6 @@
         background-color: grey;
         width: 6vh;
         height: 6vh;
-        opacity: 0;
         transition: 1s all;
         border-radius: 15%;
     }
@@ -382,7 +377,6 @@
         background-color: red;
         width: 6vh;
         height: 6vh;
-        opacity: 0;
         transition: 1s all;
         border-radius: 15%;
     }
@@ -393,7 +387,6 @@
         background-color: yellow;
         width: 6vh;
         height: 6vh;
-        opacity: 0;
         transition: 1s all;
         border-radius: 15%;
     }
@@ -404,7 +397,6 @@
         background-color: pink;
         width: 6vh;
         height: 6vh;
-        opacity: 0;
         transition: 1s all;
         border-radius: 15%;
     }
@@ -457,8 +449,11 @@
     }
     
     .can {
-        width: 30vh;
-        height: 15vh;
+        position: "absolute";
+        top: 5vh;
+        left: 50vh;
+        width: 100vh;
+        height: 50vh;
         transition: all 1s ease;
     }
     
