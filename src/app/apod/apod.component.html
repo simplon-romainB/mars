@@ -1,27 +1,27 @@
 <div class="apodcontainer" *ngIf="affichageApod === true">
 
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--12-col">
-            <mat-card class="imeCard example-card">
-                <mat-card-header>
-                    <div md-card-avatar class="example-header-image"></div>
-                    <mat-card-title>Image astronomique du jour</mat-card-title>
-                    <mat-card-subtitle>chaque jour une nouvelle photo</mat-card-subtitle>
-                </mat-card-header>
-                <img md-card-image class="imageApod" src={{image}}>
-                <mat-card-content>
-                    <p>
-                        {{explanation}}
-                    </p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button md-button (click)="close()">retour</button>
 
-                </mat-card-actions>
-            </mat-card>
+    <div class="mdl-cell mdl-cell--12-col">
+        <mat-card class="imeCard example-card">
+            <mat-card-header>
+                <div md-card-avatar class="example-header-image"></div>
+                <mat-card-title>Image astronomique du jour</mat-card-title>
+                <mat-card-subtitle>chaque jour une nouvelle photo</mat-card-subtitle>
+            </mat-card-header>
+            <img md-card-image class="imageApod" src={{image}}>
+            <mat-card-content>
+                <p>
+                    {{explanation}}
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button md-button (click)="close()">retour</button>
 
-        </div>
+            </mat-card-actions>
+        </mat-card>
+
     </div>
+
 </div>
 
 
@@ -40,11 +40,12 @@
     }
     
     .apodcontainer {
+        height: 150%;
         background-size: cover;
-        position: absolute;
+        position: relative;
         transition: 1s all ease;
         animation: anim 0.5s;
-        transform: translateY(-30vh);
+        transform: translateY(-50vh);
     }
     
     @keyFrames anim {
@@ -57,7 +58,7 @@
     }
     
     .mdl-grid {
-        transform: translateY(-60vh);
+        transform: translateY(-0vh);
     }
     
     @media all and (max-width: 600px) {

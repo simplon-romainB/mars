@@ -74,38 +74,39 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
   }
 
   
-  cadre(){          
+  cadre(nav){          
     this.canWidth = this.myCanvas.nativeElement.width;
     this.canHeight = this.myCanvas.nativeElement.height;
     this.cadreBase= this.canWidth;
     this.cadreGauchiste= this.canHeight;
     this.ctx = this.myCanvas.nativeElement.getContext("2d");
+    this.ctx.clearRect(0,0,this.canWidth, this.canHeight);
     this.ctx.beginPath();
     this.ctx.moveTo(0,1);
     this.ctx.strokeStyle= "black";
     this.ctx.lineTo(this.canWidth,1);
     this.ctx.stroke();
-    this.cadreDroite();
+    this.cadreDroite(nav);
   }
-  cadreDroite(){
+  cadreDroite(nav){
     this.ctx = this.myCanvas.nativeElement.getContext("2d");
     this.ctx.beginPath();
     this.ctx.moveTo((this.canWidth),1);
     this.ctx.strokeStyle= "black";
     this.ctx.lineTo((this.canWidth),this.canHeight);
     this.ctx.stroke();  
-      this.cadreBas();
+      this.cadreBas(nav);
   }
-  cadreBas(){
+  cadreBas(nav){
     this.ctx = this.myCanvas.nativeElement.getContext("2d");
     this.ctx.beginPath();
     this.ctx.moveTo((this.canWidth-1),(this.canHeight));
     this.ctx.strokeStyle= "black";
     this.ctx.lineTo(1,(this.canHeight));
     this.ctx.stroke();
-    this.cadreGauche();
+    this.cadreGauche(nav);
   }
-  cadreGauche(){
+  cadreGauche(nav){
     this.ctx = this.myCanvas.nativeElement.getContext("2d");
     this.ctx.beginPath();
     this.ctx.moveTo(1,this.canHeight);
@@ -113,7 +114,16 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
     this.ctx.lineTo(1,1);
     this.ctx.stroke();
       this.indicePlanetes = 0;
+    if ((this.position[0] === true) && (nav == 3)) {
+      console.log(nav);
       this.init(this.planetes[0].taille,this.resVar[0],"black","grey",0);
+    }
+
+    else if((this.position[0] === true) && (nav == 1)) {
+      console.log(nav);
+      this.init2(this.planetes[0].masse, this.resVar[0], "black", "grey", 0);
+    }
+   
       
      
       
@@ -136,7 +146,7 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
      this.ctx.fillRect(1 + decalage,(this.canHeight-(variableReset)),(this.canWidth/8),variableReset);
     this.ctx.font = "bold 22pt Calibri,Geneva,Arial";
     this.ctx.fillStyle = "black";
-    this.ctx.fillText("ok",1+decalage,this.canHeight);
+    this.ctx.fillText(this.planetes[this.indicePlanetes].tailleA,1+decalage,this.canHeight);
     this.ctx.closePath();
     variableReset =  variableReset + (((taille/100)*(this.canHeight)-1) /20) ;
     
@@ -154,23 +164,43 @@ public planetes = [{"nom": "Jupiter", "taille":100, "masse":100, "demiGrandAxe" 
       window.requestAnimationFrame(()=>{this.init(taille,variableReset,couleurContour,couleurFill,decalage )});
       }
     }
-  }/*
-   init2(taille,variableReset,couleurContour,couleurFill,length) {
-    this.ctx = this.myCanvas.nativeElement.getContext("2d");
-    
-    this.ctx.beginPath();
-    this.ctx.strokeStyle= "black";
-    this.ctx.fillStyle= couleurFill;
-    this.ctx.strokeRect(1+length,(this.canHeight-(variableReset)),(this.canWidth/8),variableReset);
-    this.ctx.fillRect(1+length,(this.canHeight-variableReset),(this.canWidth/8),variableReset);
-    
-    this.ctx.closePath();
-    variableReset = variableReset+1;
-    console.log(this.res);
-    /* if (variableReset < ((taille/100)*(this.canHeight))) {
-    var z = setTimeout(()=>this.init2(taille,variableReset,couleurContour,couleurFill,length),1);
-   
   }
+  
+  init2(taille,variableReset,couleurContour,couleurFill,decalage ){
+    
+    this.ctx = this.myCanvas.nativeElement.getContext("2d");
+    this.ctx.beginPath();
+    
+    this.ctx.strokeStyle= couleurContour;
+    this.ctx.fillStyle=couleurFill;
+    
+    this.ctx.strokeRect(1 + decalage,(this.canHeight-(variableReset)),(this.canWidth/8),variableReset);
+     this.ctx.fillRect(1 + decalage,(this.canHeight-(variableReset)),(this.canWidth/8),variableReset);
+    this.ctx.font = "bold 22pt Calibri,Geneva,Arial";
+    this.ctx.fillStyle = "black";
+    this.ctx.fillText(this.planetes[this.indicePlanetes].masseA,1+decalage,this.canHeight);
+    this.ctx.closePath();
+    variableReset =  variableReset + (((taille/100)*(this.canHeight)-1) /20) ;
+    
+    if (variableReset < ((taille/100)*(this.canHeight)-1)) {
+    window.requestAnimationFrame(()=>{this.init2(taille,variableReset,couleurContour,couleurFill,decalage )});
+    
+  }
+    else {
+      decalage = decalage + (this.canWidth/8);
+      variableReset = 0;
+      this.indicePlanetes = this.indicePlanetes +1; 
+      if (this.indicePlanetes < 8) {
+      taille = this.planetes[this.indicePlanetes].masse;
+      couleurFill = this.couleurs[this.indicePlanetes];
+      window.requestAnimationFrame(()=>{this.init2(taille,variableReset,couleurContour,couleurFill,decalage )});
+      }
+    }
+  }
+  
+  
+  /*
+   
   
     else {
       this.res = this.res +1;

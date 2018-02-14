@@ -74,7 +74,7 @@ SlideFXApod(){
 SlideFXNumbers(){
 	this.affichageNumbers = true;
 	this.isSlide = true;
-	 var l = setTimeout(()=>this.numbersComponent.cadre(),0.5);
+	 var l = setTimeout(()=>this.numbersComponent.cadre(3),0.5);
 	
 }
 

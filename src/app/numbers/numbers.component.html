@@ -1,5 +1,5 @@
 <div *ngIf="affichageNumbers === true" class="fond">
-    <button md-button (click)="close()">retour</button>
+    <button class="retour" md-button (click)="close()">retour</button>
     <div>
         <div class="flexLegende legendeMobile">
             <div class="legende1 legendeMobile" [ngClass]="legende12">
@@ -28,91 +28,11 @@
             </div>
         </div>
     </div>
-
-    <canvas class="can" width="800" height="400" (click)="zoom()" [ngClass]="{'zoom ': zoomId}" #myCanvas> </canvas>
+    <button class="next" md-button (click)="cadre('1')">next</button>
+    <button class="previous" md-button (click)="cadre('0')">previous</button>
+    <canvas *ngIf="position[0] == true" class="can" width="800" height="400" #myCanvas><button class="next" md-button (click)="close()">retour</button> </canvas>
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
-
-
-
-
-            <div class="diametre" *ngIf="position[0]">diametre(en milliers de KM)</div>
-
-
-            <div class="ex" *ngIf="zoomId">{{planetes[0].tailleA}}
-                <div class="ex2" *ngIf="zoomId">{{planetes[1].tailleA}}</div>
-                <div class="ex3" *ngIf="zoomId">{{planetes[2].tailleA}}</div>
-                <div class="ex4" *ngIf="zoomId">{{planetes[3].tailleA}}</div>
-                <div class="ex5" *ngIf="zoomId">{{planetes[4].tailleA}}</div>
-                <div class="ex6" *ngIf="zoomId">{{planetes[5].tailleA}}</div>
-                <div class="ex7" *ngIf="zoomId">{{planetes[6].tailleA}}</div>
-                <div class="ex8" *ngIf="zoomId">{{planetes[7].tailleA}}</div>
-            </div>
-
-
-
-            <div>
-                <div class="diametre" *ngIf="position[1]">masse(en Kg)</div>
-                <canvas class="can" (click)="zoom2()" [ngClass]="{'zoom2': zoomId2}" #myCanvas2></canvas>
-                <div class="ex" *ngIf="zoomId2">{{planetes[0].masseA}}<sup>{{planetes[0].exposantMasse}}</sup>
-                    <div class="ex2" *ngIf="zoomId2">{{planetes[1].masseA}}<sup>{{planetes[1].exposantMasse}}</sup></div>
-                    <div class="ex3" *ngIf="zoomId2">{{planetes[2].masseA}}<sup>{{planetes[2].exposantMasse}}</sup></div>
-                    <div class="ex4" *ngIf="zoomId2">{{planetes[3].masseA}}<sup>{{planetes[3].exposantMasse}}</sup></div>
-                    <div class="ex5" *ngIf="zoomId2">{{planetes[4].masseA}}<sup>{{planetes[4].exposantMasse}}</sup></div>
-                    <div class="ex6" *ngIf="zoomId2">{{planetes[5].masseA}}<sup>{{planetes[5].exposantMasse}}</sup></div>
-                    <div class="ex7" *ngIf="zoomId2">{{planetes[6].masseA}}<sup>{{planetes[6].exposantMasse}}</sup></div>
-                    <div class="ex8" *ngIf="zoomId2">{{planetes[7].masseA}}<sup>{{planetes[7].exposantMasse}}</sup></div>
-                </div>
-
-            </div>
-            <div>
-                <div class="diametre" *ngIf="position[2]">demi grand axe(en UA)</div>
-                <canvas class="can" (click)="zoom3()" [ngClass]="{'zoom3': zoomId3}" #myCanvas3></canvas>
-                <div class="ex" *ngIf="zoomId3">{{planetes[0].demiGrandAxeA}}
-                    <div class="ex2" *ngIf="zoomId3">{{planetes[1].demiGrandAxeA}}</div>
-                    <div class="ex3" *ngIf="zoomId3">{{planetes[2].demiGrandAxeA}}</div>
-                    <div class="ex4" *ngIf="zoomId3">{{planetes[3].demiGrandAxeA}}</div>
-                    <div class="ex5" *ngIf="zoomId3">{{planetes[4].demiGrandAxeA}}</div>
-                    <div class="ex6" *ngIf="zoomId3">{{planetes[5].demiGrandAxeA}}</div>
-                    <div class="ex7" *ngIf="zoomId3">{{planetes[6].demiGrandAxeA}}</div>
-                    <div class="ex8" *ngIf="zoomId3">{{planetes[7].demiGrandAxeA}}</div>
-                </div>
-
-            </div>
-            <div>
-                <div class="diametre" *ngIf="position[3]">periode de revolution orbitale(en jours terrestres)</div>
-                <canvas class="can" (click)="zoom4()" [ngClass]="{'zoom4': zoomId4}" #myCanvas4></canvas>
-                <div class="ex" *ngIf="zoomId4">{{planetes[0].periodeA}}
-                    <div class="ex2" *ngIf="zoomId4">{{planetes[1].periodeA}}</div>
-                    <div class="ex3" *ngIf="zoomId4">{{planetes[2].periodeA}}</div>
-                    <div class="ex4" *ngIf="zoomId4">{{planetes[3].periodeA}}</div>
-                    <div class="ex5" *ngIf="zoomId4">{{planetes[4].periodeA}}</div>
-                    <div class="ex6" *ngIf="zoomId4">{{planetes[5].periodeA}}</div>
-                    <div class="ex7" *ngIf="zoomId4">{{planetes[6].periodeA}}</div>
-                    <div class="ex8" *ngIf="zoomId4">{{planetes[7].periodeA}}</div>
-
-                </div>
-
-            </div>
-            <div>
-                <div class="diametre" *ngIf="position[4]">excentricité de l'orbite</div>
-                <canvas class="can" (click)="zoom5()" [ngClass]="{'zoom5': zoomId5}" #myCanvas5></canvas>
-                <div class="ex" *ngIf="zoomId5">{{planetes[0].excentriciteA}}
-                    <div class="ex2" *ngIf="zoomId5">{{planetes[1].excentriciteA}}</div>
-                    <div class="ex3" *ngIf="zoomId5">{{planetes[2].excentriciteA}}</div>
-                    <div class="ex4" *ngIf="zoomId5">{{planetes[3].excentriciteA}}</div>
-                    <div class="ex5" *ngIf="zoomId5">{{planetes[4].excentriciteA}}</div>
-                    <div class="ex6" *ngIf="zoomId5">{{planetes[5].excentriciteA}}</div>
-                    <div class="ex7" *ngIf="zoomId5">{{planetes[6].excentriciteA}}</div>
-                    <div class="ex8" *ngIf="zoomId5">{{planetes[7].excentriciteA}}</div>
-                </div>
-
-            </div>
-
-
-
-
-
         </div>
     </div>
     <div class="explicationsDiv" [ngClass]="{'explicationsDiv2': resDemiGrand > 0}">
@@ -122,7 +42,7 @@
                 <h2 class="mdl-card__title-text">
                     {{this.explic}}
                 </h2>
-                <div class="photoastro" [ngClass]="{'photoastro2': zoomId,'photoastro3': zoomId2,'photoastro4': zoomId3, 'photoastro5': zoomId4,'photoastro6': zoomId5}"></div>
+                <div class="photoastro" [ngClass]="{'photoastro2': 'position[0] === true','photoastro3': 'position[1] === true','photoastro4': 'position[2] === true', 'photoastro5': 'position[3] === true','photoastro6': 'position[4] === true'}"></div>
             </div>
 
             <div class="mdl-card__actions mdl-card--border">
@@ -132,6 +52,56 @@
     </div>
 </div>
 <style>
+    body {
+        background-image: url("http://i.huffpost.com/gen/2017510/images/o-SOLAR-SYSTEM-MISSIONS-facebook.jpg") cover;
+        background-size: contain;
+    }
+    
+    .next {
+        border-top-right-radius: 100%;
+        border-bottom-right-radius: 100%;
+        position: absolute;
+        right: 15%;
+        top: 50%;
+        width: 7vh;
+        height: 3vh;
+        transition: 0.5s;
+    }
+    
+    .previous {
+        border-top-left-radius: 100%;
+        border-bottom-left-radius: 100%;
+        position: absolute;
+        left: 15%;
+        top: 50%;
+        width: 7vh;
+        height: 3vh;
+        transition: 0.5s;
+    }
+    
+    .retour {
+        position: relative;
+        top: 50vh;
+        width: 10vh;
+        height: 5vh;
+    }
+    
+    .fond {
+        position: relative;
+        top: -80vh;
+        transition: 1s all ease;
+        animation: anim 0.5s;
+    }
+    
+    @keyFrames anim {
+        from {
+            left: 200vh
+        }
+        to {
+            left: 0vh
+        }
+    }
+    
     .stats {
         position: relative;
     }
@@ -180,8 +150,10 @@
     }
     
     .explicationsDiv {
-        opacity: 0;
+        opacity: 1;
         transition: all 2s;
+        position: relative;
+        top: 50vh;
     }
     
     .explicationsDiv2 {
@@ -206,102 +178,6 @@
     .flexEx {
         display: flex;
         flex-wrap: row wrap;
-        bottom: -2.7vh;
-    }
-    
-    .ex {
-        text-align: center;
-        display: block;
-        position: absolute;
-        width: 7.9vh;
-        height: 2.3vh;
-        border: 1px solid black;
-        border-radius: 3px;
-        bottom: -2.5vh;
-    }
-    
-    .ex2 {
-        text-align: center;
-        display: block;
-        position: absolute;
-        width: 7.9vh;
-        height: 2.3vh;
-        border: 1px solid black;
-        border-radius: 3px;
-        left: 7.9vh;
-        top: -0.05vh;
-    }
-    
-    .ex3 {
-        text-align: center;
-        display: block;
-        position: absolute;
-        width: 7.9vh;
-        height: 2.3vh;
-        border: 1px solid black;
-        border-radius: 3px;
-        left: 15.8vh;
-        top: -0.05vh;
-    }
-    
-    .ex4 {
-        text-align: center;
-        display: block;
-        position: absolute;
-        width: 7.9vh;
-        height: 2.3vh;
-        border: 1px solid black;
-        border-radius: 3px;
-        left: 23.7vh;
-        top: -0.05vh;
-    }
-    
-    .ex5 {
-        text-align: center;
-        display: block;
-        position: absolute;
-        width: 7.9vh;
-        height: 2.3vh;
-        border: 1px solid black;
-        border-radius: 3px;
-        left: 31.6vh;
-        top: -0.05vh;
-    }
-    
-    .ex6 {
-        text-align: center;
-        display: block;
-        position: absolute;
-        width: 7.9vh;
-        height: 2.3vh;
-        border: 1px solid black;
-        border-radius: 3px;
-        left: 39.5vh;
-        top: -0.05vh;
-    }
-    
-    .ex7 {
-        text-align: center;
-        display: block;
-        position: absolute;
-        width: 7.9vh;
-        height: 2.3vh;
-        border: 1px solid black;
-        border-radius: 3px;
-        left: 47.6vh;
-        top: -0.05vh;
-    }
-    
-    .ex8 {
-        text-align: center;
-        display: block;
-        position: absolute;
-        width: 7.3vh;
-        height: 2.3vh;
-        border: 1px solid black;
-        border-radius: 3px;
-        left: 55.6vh;
-        top: -0.05vh;
     }
     
     .flexlegende {
@@ -309,9 +185,9 @@
         flex-flow: row wrap;
         width: 100%;
         justify-content: space-between;
-        position: absolute;
-        bottom: 50vh;
+        position: relative;
         margin: auto;
+        transform: translateY(-28vh);
     }
     
     @media all and (max-width: 600px) {
@@ -322,7 +198,6 @@
     
     .legende1 {
         display: inline-block;
-        transform: translateY(-75vh);
         background-color: brown;
         width: 6vh;
         height: 6vh;
@@ -332,7 +207,6 @@
     
     .legende2 {
         display: inline-block;
-        transform: translateY(-75vh);
         background-color: orange;
         width: 6vh;
         height: 6vh;
@@ -342,7 +216,6 @@
     
     .legende3 {
         display: inline-block;
-        transform: translateY(-75vh);
         background-color: black;
         color: white;
         width: 6vh;
@@ -353,7 +226,6 @@
     
     .legende4 {
         display: inline-block;
-        transform: translateY(-75vh);
         background-color: blue;
         width: 6vh;
         height: 6vh;
@@ -363,7 +235,6 @@
     
     .legende5 {
         display: inline-block;
-        transform: translateY(-75vh);
         background-color: grey;
         width: 6vh;
         height: 6vh;
@@ -373,7 +244,6 @@
     
     .legende6 {
         display: inline-block;
-        transform: translateY(-75vh);
         background-color: red;
         width: 6vh;
         height: 6vh;
@@ -383,7 +253,6 @@
     
     .legende7 {
         display: inline-block;
-        transform: translateY(-75vh);
         background-color: yellow;
         width: 6vh;
         height: 6vh;
@@ -393,7 +262,6 @@
     
     .legende8 {
         display: inline-block;
-        transform: translateY(-75vh);
         background-color: pink;
         width: 6vh;
         height: 6vh;
@@ -449,15 +317,12 @@
     }
     
     .can {
-        position: "absolute";
-        top: 5vh;
+        position: absolute;
         left: 50vh;
         width: 100vh;
         height: 50vh;
         transition: all 1s ease;
     }
-    
-    .can2 {}
     
     .zoom {
         position: relative;
@@ -492,7 +357,6 @@
     .explications {
         width: 100%;
         height: 40vh;
-        transform: translateY(-20vh);
         border: 1px solid black;
         background-color: lightgrey;
     }
